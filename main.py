@@ -3,14 +3,14 @@ registered_users = ["user1", "user2", "user3"]
 
 
 # Декоратор для перевірки, чи користувач зареєстрований
-
-
-
-# Приклад використання декоратора
-@user_registered
-def access_sensitive_data(username, data):
-    return f"Accessing sensitive data for {username}: {data}"
-
+def user_registered(func):
+    def wrapper(username, data):
+        if username in registered_users:
+            return func(username, data)
+        else:
+            return "Access denied. User is not registered."
+    return wrapper
+    
 
 # Приклади викликів функції з різними користувачами
 current_user = "user1"
