@@ -14,6 +14,7 @@ def user_registered(func):
 
 
 
+
 # Приклад використання декоратора
 @user_registered
 def access_sensitive_data(username, data):
