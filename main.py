@@ -3,6 +3,14 @@ registered_users = ["user1", "user2", "user3"]
 
 
 # Декоратор для перевірки, чи користувач зареєстрований
+def user_registered(func):
+    def wrapper(username, data):
+        global registered_users
+        if (registered_users.__contains__(username)):
+            return func(username, data)
+        else:
+            return "Acces denied"
+    return wrapper
 
 
 
