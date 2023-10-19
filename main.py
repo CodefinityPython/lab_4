@@ -3,8 +3,26 @@ registered_users = ["user1", "user2", "user3"]
 
 
 # Декоратор для перевірки, чи користувач зареєстрований
+def user_registered(func):
+    def wrapper(usersname, data):
+        is_registered = True
+        if is_registered:
+            return func(usersname, data)
+        else:
+            return "User is not registered."
+    return wrapper
 
+# Example usage of the decorator:
+@user_registered
+def some_protected_function():
+    return "This is a protected function."
 
+# Test cases
+registered_user = some_protected_function()
+unregistered_user = some_protected_function()
+
+print(registered_user)
+print(unregistered_user)
 
 # Приклад використання декоратора
 @user_registered
