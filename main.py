@@ -3,8 +3,13 @@ registered_users = ["user1", "user2", "user3"]
 
 
 # Декоратор для перевірки, чи користувач зареєстрований
-
-
+def user_registered(func):
+    def wrapper(username, date):
+        if username in registered_users:
+            return func(username, date)
+        else:
+            return f"Access denied, user not found."
+    return wrapper
 
 # Приклад використання декоратора
 @user_registered
@@ -24,4 +29,4 @@ current_user = "user4"
 data_to_access = "Confidential data"
 
 # Доступ має бути відмовлено, оскільки користувач не зареєстрований
-print(access_sensitive_data(current_user,data_to_access))
+print(access_sensitive_data(current_user, data_to_access))
