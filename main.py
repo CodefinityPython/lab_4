@@ -9,7 +9,7 @@ def user_registered(func):
             return func(user, data)
         else:
             return 'Такого користувача немає!'
-        return wrapper
+    return wrapper
 
 
 # Приклад використання декоратора
