@@ -3,6 +3,14 @@ registered_users = ["user1", "user2", "user3"]
 
 
 # Декоратор для перевірки, чи користувач зареєстрований
+def user_registered(func):
+    def verify(user, data):
+        if registered_users.__contains__(user):
+        
+            return func(user, data)
+        else: 
+            return 'error'
+    return verify
 
 
 
